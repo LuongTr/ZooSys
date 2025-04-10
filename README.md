@@ -22,11 +22,11 @@ The Zoo Management System is a software application designed to manage the opera
 
 ## Usage
 1. Start xampp
-   ```
+   
 2. Open PHPMyAdmin at `http://localhost/phpmyadmin`
-   ```
+   
 3. Import zmsdb.sql in xampp
-   ```
+   
 4. Open your browser and navigate to `http://localhost.zms`.
 
 
