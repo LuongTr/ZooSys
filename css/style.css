@@ -72,8 +72,10 @@ body{
     font-family: 'FugazOne-Regular';
 }
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #a9a685;
-    background-color: transparent;
+    /* color: #a9a685;
+    background-color: transparent; */
+    color: #fff;
+    background-color: #ff9541;
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: #fff;
@@ -117,7 +119,7 @@ body{
     background-color: #fff;
 }
 .header-banner {
-    background: url(../images/banner.jpg) no-repeat 0px 0px;
+    background: url(../images/zoobanner.jpg) no-repeat 0px 0px;
     background-size: cover;
     min-height: 712px;
 	text-align: center;
@@ -436,9 +438,9 @@ span.glyphicon.glyphicon-user:hover {
 }
 /*--about--*/
 .banner-header {
-  background: url("../images/banner1.jpg")no-repeat 0px 0px;
+  background: url("../images/hba.jpg") no-repeat left bottom;
   background-size: cover;
-  min-height: 140px;
+  min-height: 350px;
   text-align:center;
    padding: 4em 0 0;
 }
@@ -1205,7 +1207,7 @@ img.zoom-img:hover {
     font-size: 0.9em;
 }
 .header-banner {
-    background: url(../images/banner.jpg) no-repeat -180px 0px;
+    background: url(../images/zoobanner.jpg) no-repeat -180px 0px;
     background-size: cover;
 }
 .head-banner {
@@ -1309,7 +1311,7 @@ address {
 }
 @media (max-width: 320px){
 .header-banner {
-    background: url(../images/banner.jpg) no-repeat -644px 0px;
+    background: url(../images/zoobanner.jpg) no-repeat -644px 0px;
     background-size: cover;
 	padding: 2em 0 0;
 }
@@ -1422,4 +1424,5 @@ address {
 }
 .company-right {
     padding: 0;
+}
 }

@@ -20,12 +20,12 @@
                                 </ul>
                             </li>
 
-                            <li>
+                            <!-- <li>
                                 <a href="manage-ticket.php" aria-expanded="true"><i class="ti-layout-sidebar-left"></i><span>Manage Type Ticket
                                     </span></a>
-                            </li>
+                            </li> -->
                             <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Normal Ticket</span></a>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Ticket</span></a>
                                 <ul class="collapse">
                                     <li><a href="add-normal-ticket.php">Add Ticket</a></li>
                                     <li><a href="manage-normal-ticket.php">Manage Ticket</a></li>
@@ -46,20 +46,19 @@
                                 </ul>
                             </li>
                           <li>
-                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Reports</span></a>
-                                <ul class="collapse">
-                                    <li><a href="between-dates-normalreports.php">Normal People Report</a></li>
-                                    <!-- <li><a href="between-dates-foreignerreports.php">Foreigner People Report</a></li> -->
-                                </ul>
+                                <li><a href="between-dates-normalreports.php" aria-expanded="true"><i class="ti-folder"></i><span>Report</span></a></li>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-search"></i><span>Search</span></a>
                                 <ul class="collapse">
-                                    <li><a href="normal-search.php">Normal Ticket Search</a></li>
-                                    <!-- <li><a href="foreigner-search.php">Foreigner Ticket Search</a></li> -->
+                                    <li><a href="normal-search.php">Ticket Search</a></li>
+                                    <li><a href="foreigner-search.php">Foreigner Ticket Search</a></li>
                                 </ul>
+                            </li> -->
+                            <li>
+                                <li><a href="normal-search.php" aria-expanded="true"><i class="ti-search"></i><span>Ticket Search</span></a></li>
                             </li>
-                            
+
                            
                         </ul>
                     </nav>

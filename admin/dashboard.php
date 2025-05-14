@@ -63,7 +63,7 @@ if (strlen($_SESSION['zmsaid']==0)) {
 $result=mysqli_fetch_array($query);
 $totalanimal=$result['totalanimal'];
  ?>  
-                                        <h3 class="header-title mb-0">Total Animals</h3>
+                                        <h3 class="header-title mb-0">Total Animals In Zoo</h3>
                                        <p style="font-size: 20px;color: red"><?php if($totalanimal==''):
                                        echo "0";
                                     else: 
@@ -88,7 +88,7 @@ $totalanimal=$result['totalanimal'];
 $result=mysqli_fetch_array($query);
 $count_total_visitors=$result['totaladult'];
  ?>  
-                                        <h3 class="header-title mb-0">Total Normal Adult Visitor</h3>
+                                        <h3 class="header-title mb-0">Total Adult Visitor</h3>
                                        <p style="font-size: 20px;color: red"><?php if($count_total_visitors==''):
                                        echo "0";
                                     else: 
@@ -112,7 +112,7 @@ $count_total_visitors=$result['totaladult'];
 $result=mysqli_fetch_array($query);
 $count_total_cvisitors=$result['totalchild'];
  ?>  
-                                        <h4 class="header-title mb-0">Today Normal Children Visitor</h4>
+                                        <h4 class="header-title mb-0">Today Children Visitor</h4>
                                         <p style="font-size: 20px;color: red"><?php 
 if($count_total_cvisitors==''):
 echo "0"; else: 
@@ -140,7 +140,7 @@ endif;?>
 $result=mysqli_fetch_array($query);
 $count_today_visitors=$result['totaladult'];
  ?>  
-                                        <h3 class="header-title mb-0">Today Normal Adult Visitor</h3>
+                                        <h3 class="header-title mb-0">Today Adult Visitor</h3>
                                        <p style="font-size: 20px;color: red"><?php if($count_today_visitors==''):
                                        echo "0";
                                     else: 
@@ -163,7 +163,7 @@ $count_today_visitors=$result['totaladult'];
 $result=mysqli_fetch_array($query);
 $count_today_cvisitors=$result['totalchild'];
  ?>  
-                                        <h4 class="header-title mb-0">Today Normal Children Visitor</h4>
+                                        <h4 class="header-title mb-0">Today Children Visitor</h4>
                                         <p style="font-size: 20px;color: red"><?php 
 if($count_today_cvisitors==''):
 echo "0"; else: 
@@ -185,7 +185,7 @@ endif;?>
 $result=mysqli_fetch_array($query);
 $count_Yest_visitors=$result['totaladulty'];
  ?>
-                                        <h4 class="header-title mb-0">Yesterday Normal Adult Visitor</h4>
+                                        <h4 class="header-title mb-0">Yesterday Adult Visitor</h4>
                                         <p style="font-size: 20px;color: red">
                                             
 
@@ -209,7 +209,7 @@ endif;?>
 $result=mysqli_fetch_array($query);
 $count_Yest_cvisitors=$result['totalchildy'];
  ?>
-                                        <h4 class="header-title mb-0">Yesterday Normal Child Visitor</h4>
+                                        <h4 class="header-title mb-0">Yesterday Child Visitor</h4>
                                         <p style="font-size: 20px;color: red">
                                             
                                             <?php 
@@ -228,150 +228,7 @@ endif;?>
                  <div class="sales-report-area sales-style-two">
                     <div class="row">
 
-        <div class="col-xl-6 col-ml-3 col-md-6 mt-5">
-                            <div class="single-report" style="border:solid 1px red">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <?php
-//Total Foreigner adult visitors
- $query=mysqli_query($con,"select sum(NoAdult) as totaladult from tblticforeigner");
-$result=mysqli_fetch_array($query);
-$count_total_visitors=$result['totaladult'];
- ?>  
-                                        <h3 class="header-title mb-0">Total Foreigner Adult Visitor</h3>
-                                       <p style="font-size: 20px;color: red">
-                                           
-                                           <?php 
-if($count_total_visitors==''):
-echo "0"; else: 
-echo $count_total_visitors;
-endif;?>
-                                       </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-      <div class="col-xl-6 col-ml-3 col-md-6 mt-5">
-                            <div class="single-report" style="border:solid 1px red">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <?php
-//Total Foreigner children visitors
- $query=mysqli_query($con,"select sum(NoChildren) as totalchildy from tblticforeigner");
-$result=mysqli_fetch_array($query);
-$count_total_cvisitors=$result['totalchildy'];
- ?>
-                                        <h4 class="header-title mb-0">Total Foreigner Child Visitor</h4>
-                                        <p style="font-size: 20px;color: red">
-                                            <?php 
-if($count_total_cvisitors==''):
-echo "0"; else: 
-echo $count_total_cvisitors;
-endif;?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-         <div class="col-xl-6 col-ml-6 col-md-6 mt-5">
-                            <div class="single-report" style="border:solid 1px #009933">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <?php
-//todays Foreigner adult visitors
- $query=mysqli_query($con,"select sum(NoAdult) as totaladult from tblticforeigner where date(PostingDate)=CURDATE()");
-$result=mysqli_fetch_array($query);
-$count_today_visitors=$result['totaladult'];
- ?>  
-                                        <h3 class="header-title mb-0">Today Foreigner Adult Visitor</h3>
-                                       <p style="font-size: 20px;color: red">
-                                           
-                                           <?php 
-if($count_today_visitors==''):
-echo "0"; else: 
-echo $count_today_visitors;
-endif;?>
-                                       </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                        <div class="col-xl-6 col-ml-6 col-md-6 mt-5">
-                            <div class="single-report" style="border:solid 1px #009933">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <?php
-//todays Foreigner children visitors
- $query=mysqli_query($con,"select sum(NoChildren) as totalchild from tblticforeigner where date(PostingDate)=CURDATE()");
-$result=mysqli_fetch_array($query);
-$count_today_cvisitors=$result['totalchild'];
- ?>  
-                                        <h4 class="header-title mb-0">Today Foreigner Children Visitor</h4>
-                                        <p style="font-size: 20px;color: red">
-                                            <?php 
-if($count_today_cvisitors==''):
-echo "0"; else: 
-echo $count_today_cvisitors;
-endif;?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-ml-6 col-md-6  mt-5">
-                            <div class="single-report" style="border:solid 1px #009933">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <?php
-//Yesterday Foreigner adult visitors
- $query=mysqli_query($con,"select sum(NoAdult) as totaladulty from tblticforeigner where date(PostingDate)=CURDATE()-1");
-$result=mysqli_fetch_array($query);
-$count_Yest_visitors=$result['totaladulty'];
- ?>
-                                        <h4 class="header-title mb-0">Yesterday Foreigner Adult Visitor</h4>
-                                        <p style="font-size: 20px;color: red">
-                                            <?php 
-if($count_Yest_visitors==''):
-echo "0"; else: 
-echo $count_Yest_visitors;
-endif;?>
-                                        </p>
-                                    </div>
-                                </div>
-            
-                            </div>
-                        </div>
-                        <div class="col-xl-6 col-ml-6 col-md-6 mt-5">
-                            <div class="single-report" style="border:solid 1px #009933">
-                                <div class="s-sale-inner pt--30 mb-3">
-                                    <div class="s-report-title d-flex justify-content-between">
-                                        <?php
-//Yesterday Foreigner children visitors
- $query=mysqli_query($con,"select sum(NoChildren) as totalchildy from tblticforeigner where date(PostingDate)=CURDATE()-1");
-$result=mysqli_fetch_array($query);
-$count_Yest_cvisitors=$result['totalchildy'];
- ?>
-                                        <h4 class="header-title mb-0">Yesterday Foreigner Child Visitor</h4>
-                                        <p style="font-size: 20px;color: red">
-                                            <?php 
-if($count_Yest_cvisitors==''):
-echo "0"; else: 
-echo $count_Yest_cvisitors;
-endif;?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        
                     </div>
                 </div>
                 <!-- sales report area end -->

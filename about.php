@@ -40,7 +40,7 @@ include('includes/dbconnection.php');
 							<div class="col-md-12 advantage-grid">
 								<div class="advantage">
 								<h3><?php  echo $row['PageTitle'];?></h3>	
-								<div class="right-grid">
+								<div class="right-grid" style="width: 100%">
 									
 									<p><?php  echo $row['PageDescription'];?>.</p>
 								</div>
