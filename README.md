@@ -27,6 +27,6 @@ The Zoo Management System is a software application designed to manage the opera
    
 3. Import zmsdb.sql in xampp
    
-4. Open your browser and navigate to `http://localhost.zms`.
+4. Open your browser and navigate to `http://localhost/zms`.
 
 
