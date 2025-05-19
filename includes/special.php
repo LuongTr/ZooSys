@@ -5,9 +5,9 @@
 							<div class="col-md-4 specials1">
 								<h3> details</h3>
 								<ul>
-									<li><a href="about.php">About Us</a></li>
-									<li><a href="index.php">Home</a></li>
-									<li><a href="contact.php">Contact</a></li>
+									<li><a href="about.php">Về chúng tôi</a></li>
+									<li><a href="index.php">Trang chủ</a></li>
+									<li><a href="contact.php">Liên hệ</a></li>
 									<li><a href="admin/index.php">Admin</a></li>
 								</ul>
 							</div>
@@ -31,7 +31,7 @@
 									<li><a href="#">facebook</a></li>
 									<li><a href="#">twitter</a></li>
 									<li><a href="#">google+</a></li>
-									<li><a href="#">vimeo</a></li>
+									<!-- <li><a href="#">vimeo</a></li> -->
 								</ul>
 							</div>
 							<div class="clearfix"></div>

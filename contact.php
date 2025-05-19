@@ -20,7 +20,7 @@ include('includes/dbconnection.php');
 			
 		<div class="banner-header">
 			<div class="container">
-				<h2>contact</h2>
+				<h2></h2>
 			</div>
 			</div>
 	<!--about-->
@@ -39,8 +39,8 @@ include('includes/dbconnection.php');
 						<div class="advantages-grids">
 							<div class="col-md-12 advantage-grid">
 								<div class="company_ad">
-							<h3>Contact Info</h3>
-							 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit velit justo.</p>
+							<h3>Thông tin liên hệ</h3>
+							 <p>Nếu bạn có bất kỳ câu hỏi, phản hồi hoặc cần hỗ trợ. Đội ngũ của chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>
 			      			<address>
 	 							 <p>Email : <?php  echo $row['Email'];?></p>
 								 <p>Phone : <?php  echo $row['MobileNumber'];?></p>

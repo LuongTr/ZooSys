@@ -29,7 +29,7 @@ include('includes/dbconnection.php');
 <?php include_once('includes/header.php');?>
 		<div class="banner-header">
 			<div class="container">
-				<h2>Animal Detail</h2>
+				<h2></h2>
 			</div>
 			</div>
 	<div class="content">
@@ -48,9 +48,9 @@ include('includes/dbconnection.php');
 						<img src="admin/images/<?php echo $row['AnimalImage'];?>" alt=" " class="img-responsive" width="300" height="300"/>
 <h4 style="padding-top: 20px"><?php echo $row['AnimalName'];?>(<?php echo $row['Breed'];?>)</h4>
 <p style="padding-top: 20px"><?php echo $row['Description'];?>.</p>
-<strong style="padding-top: 20px">Breed: <?php echo $row['Breed'];?></strong><br>
-<strong style="padding-top: 20px">Cage Number: <?php echo $row['CageNumber'];?>.</strong><br>
-<strong style="padding-top: 20px">Feed Number: <?php echo $row['FeedNumber'];?>.</strong>
+<strong style="padding-top: 20px">Giống loài: <?php echo $row['Breed'];?></strong><br>
+<strong style="padding-top: 20px">Số chuồng: <?php echo $row['CageNumber'];?>.</strong><br>
+<strong style="padding-top: 20px">Mã số cho ăn: <?php echo $row['FeedNumber'];?>.</strong>
 					<?php }?>
 					</div>	
 				</div>

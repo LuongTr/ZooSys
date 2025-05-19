@@ -29,7 +29,7 @@ include('includes/dbconnection.php');
 <?php include_once('includes/header.php');?>
 		<div class="banner-header">
 			<div class="container">
-				<h2>Animal Detail</h2>
+				<h2></h2>
 			</div>
 			</div>
 	<div class="content">

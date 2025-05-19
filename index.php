@@ -20,17 +20,17 @@ include('includes/dbconnection.php');
 			<div class="header-banner">
 				<div class="container">
 					<div class="head-banner">
-						<h3>Visit to a Zoo</h3>
-						<p> A visit to a zoo offers us an opportunity to see the wild animals. Zoo is a place where we can see different animals and birds at one place. It has great attraction particularly for the children. A visit to a zoo gives us both information and entertainment. We come to learn about the rare species.</p>
+						<h3>Tham Quan Sở Thú</h3>
+						<p> Một chuyến tham quan sở thú mang đến cho chúng ta cơ hội được tận mắt nhìn thấy các loài động vật hoang dã. Sở thú là nơi tập hợp nhiều loài động vật và chim chóc khác nhau. Đây là điểm đến hấp dẫn, đặc biệt đối với trẻ em. Tham quan sở thú không chỉ mang lại kiến thức mà còn là trải nghiệm giải trí thú vị. Chúng ta có thể tìm hiểu về những loài quý hiếm tại đây.</p>
 					</div>
 					<div class="banner-grids">
 						<div class="col-md-6 banner-grid">
-							<h4>Discover the Wild</h4>
-							<p>Experience the beauty of nature and learn about rare species in a place where wildlife thrives.</p>
+							<h4>Khám Phá Thế Giới Hoang Dã</h4>
+							<p>Trải nghiệm vẻ đẹp của thiên nhiên và tìm hiểu về những loài sinh vật quý hiếm tại nơi mà sự sống hoang dã phát triển mạnh mẽ.</p>
 						</div>
 						<div class="col-md-6 banner-grid">
-						<h4>A Window to the Animal Kingdom</h4>
-							<p>Step into a world of fascinating creatures and explore the wonders of biodiversity.</p>
+						<h4>Cánh Cửa Dẫn Vào Vương Quốc Động Vật</h4>
+							<p>Bước vào thế giới của những sinh vật kỳ thú và khám phá sự kỳ diệu của đa dạng sinh học.</p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -41,7 +41,7 @@ include('includes/dbconnection.php');
 			<div class="content">
 				<div class="welcome">
 					<div class="container">
-						<h2>welcome to zoo planet</h2>
+						<h2>Hành tinh thú</h2>
 							<div class="welcome-grids">
 								
 								<?php 
@@ -65,7 +65,7 @@ include('includes/dbconnection.php');
 				<!--animals-->
 					<div class="animals">
 						<div class="container">
-							<h3>animals</h3>
+							<h3>Các loài thú</h3>
 							<div class="clients">
 								<ul id="flexiselDemo3">
 									<?php 

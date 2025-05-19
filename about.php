@@ -20,7 +20,7 @@ include('includes/dbconnection.php');
 			
 		<div class="banner-header">
 			<div class="container">
-				<h2>about</h2>
+				<h2></h2>
 			</div>
 			</div>
 	<!--about-->
