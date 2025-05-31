@@ -7,10 +7,11 @@ if(isset($_POST['login']))
   {
     $adminuser=$_POST['username'];
     $password=md5($_POST['password']);
-    $query=mysqli_query($con,"select ID from tbladmin where  UserName='$adminuser' && Password='$password' ");
+    $query=mysqli_query($con,"select ID, Role from tbladmin where UserName='$adminuser' && Password='$password' ");
     $ret=mysqli_fetch_array($query);
     if($ret>0){
       $_SESSION['zmsaid']=$ret['ID'];
+      $_SESSION['role'] = $ret['Role'];
      header('location:dashboard.php');
     }
     else{
