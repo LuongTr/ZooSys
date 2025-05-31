@@ -72,6 +72,7 @@ echo "<script>window.location.href='manage-employees.php'</script>";
                                         <thead class="bg-light text-capitalize">
                                             <tr>
                                                 <!-- <th>S.NO</th> -->
+                                                <th>S.NO</th>
                                                 <th>Employee ID</th>
                                                 <th>CCCD</th>
                                                 <th>Full Name</th>
@@ -92,7 +93,7 @@ while ($row=mysqli_fetch_array($ret)) {
 ?>
                                         <tbody>
           <tr data-expanded="true">
-            
+            <td><?php echo $cnt;?></td>
             <td><?php  echo htmlspecialchars($row['ID']);?></td>
             <td><?php  echo htmlspecialchars($row['CCCD']);?></td>
             <td><?php  echo htmlspecialchars($row['FullName']);?></td>

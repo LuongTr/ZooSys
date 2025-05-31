@@ -111,8 +111,14 @@ while ($row=mysqli_fetch_array($ret)) {
                                                     email with anyone else.</small>
                                             </div>
                                          
+                                            <div class="form-group">
 
-   <div class="form-group">
+                                                <label for="exampleInputEmail1">Role</label>
+                                                <input type="text" class="form-control" id="role" name="role" aria-describedby="emailHelp" readonly="true" value="<?php  echo $row['Role'];?>">
+                                                
+                                            </div>
+
+                                            <div class="form-group">
 
                                                 <label for="exampleInputEmail1">Registration Date</label>
                                                 <input type="text" class="form-control" id="regdate" name="regdate" aria-describedby="emailHelp" readonly="true" value="<?php  echo $row['AdminRegdate'];?>">
