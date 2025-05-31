@@ -24,7 +24,7 @@
                                     <li class="<?php if($current_page == 'about.php') { echo 'active'; } ?>"><a href="about.php">Về chúng tôi <?php if($current_page == 'about.php') { ?><span class="sr-only">(current)</span><?php } ?></a></li>
                                     <li class="<?php if($current_page == 'contact.php') { echo 'active'; } ?>"><a href="contact.php">Liên hệ <?php if($current_page == 'contact.php') { ?><span class="sr-only">(current)</span><?php } ?></a></li>
                                     <li class="<?php if($current_page == 'animals.php') { echo 'active'; } ?>"><a href="animals.php">Thú <?php if($current_page == 'animals.php') { ?><span class="sr-only">(current)</span><?php } ?></a></li>
-                                    <li><a href="admin/index.php">Admin</a></li>
+                                    <li><a href="admin/index.php">Quản lý</a></li>
                                 </ul>
                               
                             </div><!-- /.navbar-collapse -->

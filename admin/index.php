@@ -62,7 +62,7 @@ if(isset($_POST['login']))
                   
                     <div class="login-form-head">
                         <h4>Zoo Management System</h4>
-                        <p>Hello there, Sign in and start managing your Admin Template</p>
+                        <p>Hello there, Sign in and start managing your Zoo system</p>
                     </div>
                     <div class="login-form-body">
                         <div class="form-gp">

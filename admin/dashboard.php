@@ -5,9 +5,97 @@ include('includes/dbconnection.php');
 if (strlen($_SESSION['zmsaid']==0)) {
   header('location:logout.php');
   } else{
-  ?>
+?>
+
+
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+// Kết nối CSDL
+try {
+    $connect = new PDO("mysql:host=localhost;dbname=zmsdb", "root", "");
+    $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Kết nối CSDL thất bại: " . $e->getMessage());
+}
+
+// Dữ liệu mặc định
+$data = ['labels' => [], 'counts' => []];
+
+// Dữ liệu mặc định khi chưa POST: từ đầu năm đến hôm nay
+$from = $_POST["from_date"] ?? "2024-01-01";
+$to = $_POST["to_date"] ?? date("Y-m-d");
+
+// Truy vấn khi đã có ngày
+$query = "
+    SELECT DATE(PostingDate) as visit_date,
+           SUM(NoAdult + NoChildren) AS total_visitors
+    FROM tblticindian
+    WHERE DATE(PostingDate) BETWEEN :from AND :to
+    GROUP BY DATE(PostingDate)
+    ORDER BY visit_date ASC
+";
+
+try {
+    $statement = $connect->prepare($query);
+    $statement->execute([
+        ':from' => $from,
+        ':to' => $to
+    ]);
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($result as $row) {
+        $data['labels'][] = $row['visit_date'];
+        $data['counts'][] = (int)$row['total_visitors'];
+    }
+} catch (PDOException $e) {
+    die("Lỗi truy vấn: " . $e->getMessage());
+}
+?>
+
+
+
 <!doctype html>
 <html class="no-js" lang="en">
+
+<style>
+  .filter-form {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    font-family: Arial, sans-serif;
+  }
+
+  .filter-form label {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .filter-form input[type="date"] {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+
+  .filter-form button {
+    padding: 7px 16px;
+    background-color: #a916fe;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .filter-form button:hover {
+    background-color: #6f16fe;
+  }
+</style>
+
 
 <head>
     <meta charset="utf-8">
@@ -30,7 +118,11 @@ if (strlen($_SESSION['zmsaid']==0)) {
     <link rel="stylesheet" href="assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
+
+
 
 <body>
     <?php include_once('includes/sidebar.php');?>
@@ -204,24 +296,80 @@ endif;?>
                                 <div class="s-sale-inner pt--30 mb-3">
                                     <div class="s-report-title d-flex justify-content-between">
                                         <?php
-//Yesterday indian children visitors
- $query=mysqli_query($con,"select sum(NoChildren) as totalchildy from tblticindian where date(PostingDate)=CURDATE()-1");
-$result=mysqli_fetch_array($query);
-$count_Yest_cvisitors=$result['totalchildy'];
- ?>
+                                        //Yesterday children visitors
+                                        $query=mysqli_query($con,"select sum(NoChildren) as totalchildy from tblticindian where date(PostingDate)=CURDATE()-1");
+                                        $result=mysqli_fetch_array($query);
+                                        $count_Yest_cvisitors=$result['totalchildy'];
+                                        ?>
                                         <h4 class="header-title mb-0">Yesterday Child Visitor</h4>
                                         <p style="font-size: 20px;color: red">
                                             
                                             <?php 
-if($count_Yest_cvisitors==''):
-echo "0"; else: 
-echo $count_Yest_cvisitors;
-endif;?>
+                                            if($count_Yest_cvisitors==''):
+                                            echo "0"; else: 
+                                            echo $count_Yest_cvisitors;
+                                            endif;?>
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <!-- Canvas tag for showing chart -->
+                        <div class="col-xl-12 col-ml-12 col-md-12 mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Visitor Statistics Chart</h4>
+                                    <form id="dateFilterForm" method="POST" class="filter-form">
+                                        <label>From date:</label>
+                                        <input type="date" name="from_date" required>
+                                        <label>To date:</label>
+                                        <input type="date" name="to_date" required>
+                                        <button type="submit">Filter</button>
+                                    </form>
+                                    <canvas id="visitorChart" width="600" height="300"></canvas>
+
+                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                    <script>
+                                        const ctx = document.getElementById('visitorChart').getContext('2d');
+                                        const visitorChart = new Chart(ctx, {
+                                            type: 'bar', // hoặc 'bar' nếu bạn thích
+                                            data: {
+                                                labels: <?php echo json_encode($data['labels'] ?? []); ?>,
+                                                datasets: [{
+                                                    label: 'Tổng số khách mỗi ngày',
+                                                    data: <?php echo json_encode($data['counts'] ?? []); ?>,
+                                                    backgroundColor: 'rgba(75, 192, 192, 0.4)',
+                                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                                    fill: true,
+                                                    tension: 0.3
+                                                }]
+                                            },
+                                            options: {
+                                                responsive: true,
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true,
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Số khách'
+                                                        }
+                                                    },
+                                                    x: {
+                                                        title: {
+                                                            display: true,
+                                                            text: 'Ngày'
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        });
+                                    </script>
+
+
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <hr />
