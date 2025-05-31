@@ -12,6 +12,14 @@
                                 <a href="dashboard.php" aria-expanded="true"><i class="ti-dashboard"></i><span>Dashboard</span></a>
                                
                             </li>
+                            <li>
+                                <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Employees</span></a>
+                                <ul class="collapse">
+                                    <li><a href="add-employee.php">Add Employee</a></li>
+                                    <li><a href="manage-employees.php">Manage Employees</a></li>
+                                    <li><a href="employees-search.php">Search Employees</a></li>
+                                </ul>
+                            </li>
                              <li>
                                 <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Animals Details</span></a>
                                 <ul class="collapse">
@@ -29,6 +37,7 @@
                                 <ul class="collapse">
                                     <li><a href="add-normal-ticket.php">Add Ticket</a></li>
                                     <li><a href="manage-normal-ticket.php">Manage Ticket</a></li>
+                                    <li><a href="normal-search.php">Ticket Search</a></li>
                                 </ul>
                             </li>
                              <!-- <li>
@@ -55,11 +64,10 @@
                                     <li><a href="foreigner-search.php">Foreigner Ticket Search</a></li>
                                 </ul>
                             </li> -->
-                            <li>
+                            <!-- <li>
                                 <li><a href="normal-search.php" aria-expanded="true"><i class="ti-search"></i><span>Ticket Search</span></a></li>
-                            </li>
+                            </li> -->
 
-                           
                         </ul>
                     </nav>
                 </div>

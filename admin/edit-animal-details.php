@@ -115,6 +115,7 @@ while ($row=mysqli_fetch_array($ret)) {
                                             </div>
                                             <?php } ?>
                                             <button type="submit" class="btn btn-primary mt-4 pr-4 pl-4" name="submit">Update</button>
+                                            <a href="manage-animals.php" class="btn btn-secondary mt-4 pr-4 pl-4 ml-2">Cancel</a>
                                         </form>
                                     </div>
                                 </div>
