@@ -8,7 +8,7 @@ if (strlen($_SESSION['zmsaid']) == 0) {
 //Code Deletion
 if($_GET['del']){
 $eid=$_GET['id'];
-mysqli_query($con,"delete from tblemployee where ID ='$eid'");
+mysqli_query($con,"delete from tbladmin where ID ='$eid'");
 echo "<script>alert('Employee Deleted');</script>";
 echo "<script>window.location.href='manage-employees.php'</script>";
           }
@@ -79,14 +79,14 @@ echo "<script>window.location.href='manage-employees.php'</script>";
                                                 <th>Date of Birth</th>
                                                 <th>Gender</th>
                                                 <th>Phone Number</th>
-                                                <th>Address</th>
+                                                
                                                 <th>Role</th>
                                                 <th>Salary</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <?php
-$ret=mysqli_query($con,"select * from tblemployee order by ID desc");
+$ret=mysqli_query($con,"select * from tbladmin order by ID desc");
 $cnt=1;
 while ($row=mysqli_fetch_array($ret)) {
 
@@ -96,11 +96,11 @@ while ($row=mysqli_fetch_array($ret)) {
             <td><?php echo $cnt;?></td>
             <td><?php  echo htmlspecialchars($row['ID']);?></td>
             <td><?php  echo htmlspecialchars($row['CCCD']);?></td>
-            <td><?php  echo htmlspecialchars($row['FullName']);?></td>
+            <td><?php  echo htmlspecialchars($row['AdminName']);?></td>
             <td><?php  echo $row['DateOfBirth'];?></td>
             <td><?php  echo htmlspecialchars($row['Gender']);?></td>
-            <td><?php  echo htmlspecialchars($row['PhoneNumber']);?></td>
-            <td><?php  echo htmlspecialchars($row['Address']);?></td>
+            <td><?php  echo htmlspecialchars($row['MobileNumber']);?></td>
+            
             <td><?php  echo htmlspecialchars($row['Role']);?></td>
             <td><?php  echo number_format($row['Salary']);?> VND</td>
             <td>

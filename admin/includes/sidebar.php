@@ -48,7 +48,7 @@ $role = $_SESSION['role'];
                                 <li>
                                     <li><a href="between-dates-normalreports.php" aria-expanded="true"><i class="ti-folder"></i><span>Report</span></a></li>
                                 </li>
-                            <?php } else if($role == 'staff') { ?>
+                            <?php } else if($role == 'animal_staff') { ?>
                                 <!-- <li>
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Employees</span></a>
                                     <ul class="collapse">
@@ -64,14 +64,14 @@ $role = $_SESSION['role'];
                                         <li><a href="manage-animals.php">Manage Animals</a></li>
                                     </ul>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Ticket</span></a>
                                     <ul class="collapse">
                                         <li><a href="add-normal-ticket.php">Add Ticket</a></li>
                                         <li><a href="manage-normal-ticket.php">Manage Ticket</a></li>
                                         <li><a href="normal-search.php">Ticket Search</a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                                 <!-- <li>
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Page</span></a>
                                     <ul class="collapse">
@@ -79,8 +79,17 @@ $role = $_SESSION['role'];
                                         <li><a href="contactus.php">Contact Us</a></li>
                                     </ul>
                                 </li> -->
-                                <li>
+                                <!-- <li>
                                     <li><a href="between-dates-normalreports.php" aria-expanded="true"><i class="ti-folder"></i><span>Report</span></a></li>
+                                </li> -->
+                            <?php } else if ($role == 'ticket_staff') { ?>
+                                <li>
+                                    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Ticket</span></a>
+                                    <ul class="collapse">
+                                        <li><a href="add-normal-ticket.php">Add Ticket</a></li>
+                                        <li><a href="manage-normal-ticket.php">Manage Ticket</a></li>
+                                        <li><a href="normal-search.php">Ticket Search</a></li>
+                                    </ul>
                                 </li>
                             <?php } ?>
                         </ul>

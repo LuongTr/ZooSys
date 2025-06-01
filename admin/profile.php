@@ -1,6 +1,7 @@
 <?php
 session_start();
-error_reporting(0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include('includes/dbconnection.php');
 if (strlen($_SESSION['zmsaid']==0)) {
   header('location:logout.php');
@@ -9,8 +10,8 @@ if (strlen($_SESSION['zmsaid']==0)) {
   {
     $adminid=$_SESSION['zmsaid'];
     $aname=$_POST['adminname'];
-  $mobno=$_POST['contactnumber'];
-  $emailid=$_POST['email'];
+    $mobno=$_POST['contactnumber'];
+    $emailid=$_POST['email'];
   
      $query=mysqli_query($con, "update tbladmin set AdminName ='$aname',MobileNumber='$mobno',Email='$emailid' where ID='$adminid'");
     if ($query) {
@@ -76,11 +77,11 @@ if (strlen($_SESSION['zmsaid']==0)) {
                                     <div class="card-body">
                                         <h4 class="header-title">Admin Profile</h4>
 
-   <?php
-$adminid=$_SESSION['zmsaid'];
-$ret=mysqli_query($con,"select * from tbladmin where ID='$adminid'");
-$cnt=1;
-while ($row=mysqli_fetch_array($ret)) {
+<?php
+    $adminid=$_SESSION['zmsaid'];
+    $ret=mysqli_query($con,"select * from tbladmin where ID='$adminid'");
+    $cnt=1;
+    while ($row=mysqli_fetch_array($ret)) {
 
 ?>
                                         <form method="post" action="">
@@ -90,7 +91,7 @@ while ($row=mysqli_fetch_array($ret)) {
                                                 <input type="text" class="form-control" id="adminname" name="adminname" aria-describedby="emailHelp" placeholder="Admin Name" value="<?php  echo $row['AdminName'];?>">
                                                 
                                             </div>
- <div class="form-group">
+                                            <div class="form-group">
 
                                                 <label for="exampleInputEmail1">User Name</label>
                                                 <input type="text" class="form-control" id="username" name="username" aria-describedby="emailHelp" readonly="true" value="<?php  echo $row['UserName'];?>">

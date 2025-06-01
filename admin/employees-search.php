@@ -83,17 +83,17 @@ $sdata=$_POST['searchdata'];
                                                 <th>Employee ID</th>
                                                 <th>CCCD</th>
                                                 <th>Full Name</th>
+                                                <th>Email</th>
                                                 <th>Date of Birth</th>
                                                 <th>Gender</th>
                                                 <th>Phone Number</th>
-                                                <th>Address</th>
                                                 <th>Role</th>
                                                 <th>Salary (VND)</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <?php
-$ret=mysqli_query($con,"select * from tblemployee where ID like '$sdata%' || PhoneNumber like '$sdata%' || CCCD like '$sdata%'");
+$ret=mysqli_query($con,"select * from tbladmin where ID like '$sdata%' || MobileNumber like '$sdata%' || CCCD like '$sdata%'");
 $num=mysqli_num_rows($ret);
 if($num>0){
 $cnt=1;
@@ -105,11 +105,12 @@ while ($row=mysqli_fetch_array($ret)) {
             <td><?php echo $cnt;?></td>
             <td><?php  echo $row['ID'];?></td>
             <td><?php  echo $row['CCCD'];?></td>
-            <td><?php  echo $row['FullName'];?></td>
+            <td><?php  echo $row['AdminName'];?></td>
+            <td><?php  echo $row['Email'];?></td>
             <td><?php  echo date('d/m/Y', strtotime($row['DateOfBirth']));?></td>
             <td><?php  echo $row['Gender'];?></td>
-            <td><?php  echo $row['PhoneNumber'];?></td>
-            <td><?php  echo substr($row['Address'], 0, 50) . (strlen($row['Address']) > 50 ? '...' : '');?></td>
+            <td><?php  echo $row['MobileNumber'];?></td>
+            
             <td><?php  echo $row['Role'];?></td>
             <td><?php  echo number_format($row['Salary'], 0, ',', '.');?></td>
             <td>

@@ -1,7 +1,8 @@
 <?php
 session_start();
 include('includes/dbconnection.php');
-error_reporting(0);
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 if (strlen($_SESSION['zmsaid']==0)) {
   header('location:logout.php');
   } else{
@@ -10,10 +11,12 @@ if(isset($_POST['submit']))
     $empid=$_POST['empid'];
     $cccd=$_POST['cccd'];
     $fullname=$_POST['fullname'];
+    $email=$_POST['email'];
+    $username=$_POST['username'];
+    $password=md5($_POST['password']);
     $dob=$_POST['dob'];
     $gender=$_POST['gender'];
     $phone=$_POST['phone'];
-    $address=$_POST['address'];
     $role=$_POST['role'];
     $salary=$_POST['salary'];
     
@@ -30,13 +33,13 @@ if(isset($_POST['submit']))
     else
     {
         // Check if employee ID, phone number or CCCD already exists
-        $ret=mysqli_query($con,"select ID from tblemployee where ID='$empid' OR PhoneNumber='$phone' OR CCCD='$cccd'");
+        $ret=mysqli_query($con,"select ID from tbladmin where ID='$empid' OR MobileNumber='$phone' OR CCCD='$cccd'");
         $result=mysqli_fetch_array($ret);
         if($result>0){
             echo "<script>alert('Employee ID, Phone number, or CCCD is already registered to another employee');</script>";
         }
         else{
-            $query=mysqli_query($con, "insert into tblemployee(ID,CCCD,FullName,DateOfBirth,Gender,PhoneNumber,Address,Role,Salary) values('$empid','$cccd','$fullname','$dob','$gender','$phone','$address','$role','$salary')");
+            $query=mysqli_query($con, "insert into tbladmin(ID,CCCD,AdminName,Email,UserName,Password,DateOfBirth,Gender,MobileNumber,Role,Salary) values('$empid','$cccd','$fullname','$email','$username','$password','$dob','$gender','$phone','$role','$salary')");
             if ($query) {
                 echo '<script>alert("Employee detail has been added.")</script>';
             }
@@ -112,9 +115,24 @@ if(isset($_POST['submit']))
                                                 <input type="text" class="form-control" id="cccd" name="cccd" placeholder="Enter 12-digit CCCD number" value="" required="true" maxlength="12" pattern="[0-9]{12}">
                                             </div>
                                             
-                                             <div class="form-group">
+                                            <div class="form-group">
                                                 <label for="fullname">Full Name</label>
                                                 <input type="text" class="form-control" id="fullname" name="fullname" placeholder="Enter employee full name" value="" required="true">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter employee email" value="" required="true">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="username">User Name</label>
+                                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter employee user name" value="" required="true">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="text" class="form-control" id="password" name="password" placeholder="Enter employee password" value="" required="true">
                                             </div>
                                             
                                             <div class="form-group">
@@ -127,7 +145,7 @@ if(isset($_POST['submit']))
                                                 <select class="form-control" id="gender" name="gender" required="true">
                                                     <option value="">Select Gender</option>
                                                     <option value="Nam">Nam</option>
-                                                    <option value="Nữ">Nữ</option>
+                                                    <option value="Nu">Nữ</option>
                                                 </select>
                                             </div>
                                             
@@ -136,20 +154,20 @@ if(isset($_POST['submit']))
                                                 <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter phone number" value="" required="true" maxlength="15" pattern="[0-9+\-\s()]*">
                                             </div>
                                             
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="address">Address</label>
                                                 <input type="text" class="form-control" id="address" name="address" placeholder="Enter employee address" value="" required="true"></input>
-                                            </div>
+                                            </div> -->
                                             
                                             <div class="form-group">
                                                 <label for="role">Role/Position</label>
                                                 <select class="form-control" id="role" name="role" required="true">
                                                     <option value="">Select Role</option>
-                                                    <option value="Nhân viên chăm sóc">Nhân viên chăm sóc</option>
-                                                    <option value="Bác sĩ thú y">Bác sĩ thú y</option>
-                                                    <option value="Hướng dẫn viên">Hướng dẫn viên</option>
-                                                    <option value="Nhân viên bảo trì">Nhân viên bảo trì</option>
-                                                    <option value="Nhân viên bán vé">Nhân viên bán vé</option>
+                                                    <option value="animal_staff">Nhân viên chăm sóc</option>
+                                                    <option value="veterinary_staff">Bác sĩ thú y</option>
+                                                    <option value="tour_guide">Hướng dẫn viên</option>
+                                                    <option value="maintenance_staff">Nhân viên bảo trì</option>
+                                                    <option value="ticket_staff">Nhân viên vé</option>
                                                 </select>
                                             </div>
                                             

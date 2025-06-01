@@ -13,10 +13,12 @@ if (strlen($_SESSION['zmsaid']) == 0) {
         $eid = $_GET['editid'];
         $cccd = $_POST['cccd'];
         $fullname = $_POST['fullname'];
+        $email=$_POST['email'];
+        $username=$_POST['username'];
+        $password=md5($_POST['password']);
         $dob = $_POST['dob'];
         $gender = $_POST['gender'];
         $phone = $_POST['phone'];
-        $address = $_POST['address'];
         $role = $_POST['role'];
         $salary = $_POST['salary'];
 
@@ -33,17 +35,18 @@ if (strlen($_SESSION['zmsaid']) == 0) {
         else
         {
             // Check if phone number or CCCD already exists for other employees
-            $ret=mysqli_query($con,"select ID from tblemployee where (PhoneNumber='$phone' OR CCCD='$cccd') AND ID!='$eid'");
+            $ret=mysqli_query($con,"select ID from tbladmin where (MobileNumber='$phone' OR CCCD='$cccd') AND ID!='$eid'");
             $result=mysqli_fetch_array($ret);
             if($result>0){
                 echo "<script>alert('Phone number or CCCD is already registered to another employee');</script>";
             }
             else{
                 // Update employee data
-                $query = mysqli_query($con, "UPDATE tblemployee SET CCCD='$cccd', FullName='$fullname', DateOfBirth='$dob', Gender='$gender', PhoneNumber='$phone', Address='$address', Role='$role', Salary='$salary' WHERE ID='$eid'");
+                $query = mysqli_query($con, "UPDATE tbladmin SET CCCD='$cccd', AdminName='$fullname', Email='$email', UserName='$username', Password='$password', DateOfBirth='$dob', Gender='$gender', MobileNumber='$phone', Role='$role', Salary='$salary' WHERE ID='$eid'");
 
                 if ($query) {
-                    echo "<script>alert('Employee updated successfully');</script>";
+                    echo "<script>alert('Employee updated successfully'); window.location.href='manage-employees.php';</script>";
+
                 } else {
                     echo "<script>alert('Something went wrong. Please try again');</script>";
                 }
@@ -96,7 +99,7 @@ if (strlen($_SESSION['zmsaid']) == 0) {
                                             <?php
                                             // Fetch current employee data
                                             $eid = $_GET['editid'];
-                                            $ret = mysqli_query($con, "SELECT * FROM tblemployee WHERE ID='$eid'");
+                                            $ret = mysqli_query($con, "SELECT * FROM tbladmin WHERE ID='$eid'");
                                             $cnt = 1;
                                             while ($row = mysqli_fetch_array($ret)) {
                                             ?>
@@ -114,9 +117,26 @@ if (strlen($_SESSION['zmsaid']) == 0) {
                                             
                                             <div class="form-group">
                                                 <label for="fullname">Full Name</label>
-                                                <input type="text" class="form-control" name="fullname" value="<?php echo htmlspecialchars($row['FullName']); ?>" required="true">
+                                                <input type="text" class="form-control" name="fullname" value="<?php echo htmlspecialchars($row['AdminName']); ?>" required="true">
                                             </div>
                                             
+                                            <div class="form-group">
+                                                <label for="email">Email</label>
+                                                <input type="text" class="form-control" name="email" value="<?php echo htmlspecialchars($row['Email']); ?>" required="true">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="username">User Name</label>
+                                                <input type="text" class="form-control" name="username" value="<?php echo htmlspecialchars($row['UserName']); ?>" readonly style="background-color: #f8f9fa;">
+                                                <small class="form-text text-muted">Username cannot be changed</small>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="password">Password</label>
+                                                <input type="text" class="form-control" name="password" value="<?php echo htmlspecialchars($row['Password']); ?>" readonly style="background-color: #f8f9fa;">
+                                                <small class="form-text text-muted">Password cannot be changed</small>
+                                            </div>
+
                                             <div class="form-group">
                                                 <label for="dob">Date of Birth</label>
                                                 <input type="date" class="form-control" name="dob" value="<?php echo htmlspecialchars($row['DateOfBirth']); ?>" required="true">
@@ -127,20 +147,20 @@ if (strlen($_SESSION['zmsaid']) == 0) {
                                                 <select class="form-control" name="gender" required="true">
                                                     <option value="">Select Gender</option>
                                                     <option value="Nam" <?php if($row['Gender'] == 'Nam') echo 'selected'; ?>>Nam</option>
-                                                    <option value="Nữ" <?php if($row['Gender'] == 'Nữ') echo 'selected'; ?>>Nữ</option>
+                                                    <option value="Nu" <?php if($row['Gender'] == 'Nữ') echo 'selected'; ?>>Nữ</option>
                                                 
                                                 </select>
                                             </div>
                                             
                                             <div class="form-group">
                                                 <label for="phone">Phone Number</label>
-                                                <input type="text" class="form-control" name="phone" value="<?php echo htmlspecialchars($row['PhoneNumber']); ?>" required="true" maxlength="15" pattern="[0-9+\-\s()]*">
+                                                <input type="text" class="form-control" name="phone" value="<?php echo htmlspecialchars($row['MobileNumber']); ?>" required="true" maxlength="15" pattern="[0-9+\-\s()]*">
                                             </div>
                                             
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label for="address">Address</label>
                                                 <textarea class="form-control" name="address" rows="3" required="true"><?php echo htmlspecialchars($row['Address']); ?></textarea>
-                                            </div>
+                                            </div> -->
                                             
                                             <div class="form-group">
                                                 <label for="role">Role/Position</label>
