@@ -64,7 +64,17 @@ $role = $_SESSION['role'];
                                         <li><a href="manage-animals.php">Manage Animals</a></li>
                                     </ul>
                                 </li>
-                                <!-- <li>
+                                <li>
+    <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Cage Management</span></a>
+                                    <ul class="collapse">
+        <li><a href="add-cage.php">Add Cage</a></li>
+        <li><a href="manage-cage.php">Manage Cage</a></li>
+    </ul>
+</li>
+
+     
+
+                                                         <!-- <li>
                                     <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Ticket</span></a>
                                     <ul class="collapse">
                                         <li><a href="add-normal-ticket.php">Add Ticket</a></li>
@@ -91,7 +101,28 @@ $role = $_SESSION['role'];
                                         <li><a href="normal-search.php">Ticket Search</a></li>
                                     </ul>
                                 </li>
-                            <?php } ?>
+                            <?php }else if ($role == 'veterinary_staff') { ?>
+    <li>
+        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Health</span></a>
+        <ul class="collapse">
+            <li><a href="add-health.php">Add Health</a></li>
+            <li><a href="manage-health.php">Manage Health</a></li>
+        </ul>
+    </li>
+<?php }else if ($role == 'maintenance_staff') { ?>
+    <li>
+        <a href="javascript:void(0)" aria-expanded="true"><i class="ti-folder"></i><span>Tree</span></a>
+        <ul class="collapse">
+            <li><a href="add-tree.php">Add Tree</a></li>
+            <li><a href="manage-tree.php">Manage Tree</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="manage-maintenance.php"><i class="ti-settings"></i><span>Manage Maintenance</span></a>
+    </li>
+<?php }
+ ?>
+
                         </ul>
                     </nav>
                 </div>

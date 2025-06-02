@@ -1,7 +1,7 @@
-<?php
-session_start();
-error_reporting(0);
 
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 include('includes/dbconnection.php');
 ?>
 <!DOCTYPE HTML>
