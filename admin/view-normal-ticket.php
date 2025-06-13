@@ -34,6 +34,8 @@ if (strlen($_SESSION['zmsaid']==0)) {
     <link rel="stylesheet" href="assets/css/responsive.css">
     <!-- modernizr css -->
     <script src="assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <!-- ADD JQUERY HERE -->
+    <script src="assets/js/vendor/jquery-2.2.4.min.js"></script>
     
 </head>
 
@@ -101,8 +103,88 @@ while ($row=mysqli_fetch_array($ret)) {
                                     </div>
                                     <?php } ?>
                                      <p style="margin-top:1%"  align="center">
-  <i class="fa fa-print fa-2x" style="cursor: pointer;"  OnClick="CallPrint(this.value)" ></i>
+  <!-- <i class="fa fa-print fa-2x" style="cursor: pointer;"  OnClick="CallPrint(this.value)" ></i> -->
 </p>
+<div class="text-center" style="margin-top: 20px;">
+    <button type="button" class="btn btn-primary" onclick="CallPrint('exampl')">
+        <i class="fa fa-print"></i> Print Ticket
+    </button>
+    &nbsp;&nbsp;
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#emailTicketModal">
+        <i class="fa fa-envelope"></i> Email Ticket
+    </button>
+</div>
+
+<!-- Add this modal at the bottom of your page, before the closing body tag -->
+<div class="modal fade" id="emailTicketModal" tabindex="-1" role="dialog" aria-labelledby="emailTicketModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="emailTicketModalLabel">Send Ticket to Email</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <form id="emailTicketForm">
+          <div class="form-group">
+            <label for="emailAddress">Email address</label>
+            <input type="email" class="form-control" id="emailAddress" placeholder="Enter email" required>
+          </div>
+          <input type="hidden" id="ticketId" value="<?php echo $_GET['viewid']; ?>">
+        </form>
+        <div id="emailResult" class="alert" style="display:none;"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="sendEmailBtn">Send Email</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add this JavaScript code before the closing body tag -->
+<script>
+$(document).ready(function() {
+    $("#sendEmailBtn").click(function() {
+        var email = $("#emailAddress").val();
+        var ticketId = $("#ticketId").val();
+        
+        // Validate email
+        if (!email) {
+            $("#emailResult").removeClass("alert-success").addClass("alert-danger").text("Please enter an email address.").show();
+            return;
+        }
+        
+        // Disable button and show loading
+        $("#sendEmailBtn").prop("disabled", true).text("Sending...");
+        
+        // Send AJAX request
+        $.ajax({
+            url: "../send_ticket_email.php",
+            type: "POST",
+            data: {
+                email: email,
+                ticketId: ticketId
+            },
+            dataType: "json",
+            success: function(response) {
+                if (response.status === "success") {
+                    $("#emailResult").removeClass("alert-danger").addClass("alert-success").text(response.message).show();
+                } else {
+                    $("#emailResult").removeClass("alert-success").addClass("alert-danger").text(response.message).show();
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("Error details:", xhr.responseText);
+                $("#emailResult").removeClass("alert-success").addClass("alert-danger").text("An error occurred. Please try again.").show();
+            },
+            complete: function() {
+                // Re-enable button
+                $("#sendEmailBtn").prop("disabled", false).text("Send Email");
+            }
+        });
+    });
+});
+</script>
                                 </div>
                             </div>
                             <!-- basic form end -->

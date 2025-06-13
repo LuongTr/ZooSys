@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
 
 // Kết nối CSDL
 try {
-    $connect = new PDO("mysql:host=localhost;dbname=zmsdb", "root", "Chinh2504@");
+    $connect = new PDO("mysql:host=localhost;dbname=zmsdb", "root", "");
     $connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Kết nối CSDL thất bại: " . $e->getMessage());
